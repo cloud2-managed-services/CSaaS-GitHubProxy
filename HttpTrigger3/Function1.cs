@@ -48,12 +48,12 @@ namespace Gary.Function
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            string secretName = "GitHubToken";
+            string secretName = "GitHub-PAT";
 
             log.LogInformation("C# HTTP trigger function processed a request.");
             string code = null;
 
-            string keyVaultURL = "https://keyvaultgary.vault.azure.net/";
+            string keyVaultURL = "https://kv-csaas-lighthouse.vault.azure.net/";
             var kvClient = new SecretClient(new Uri(keyVaultURL), new DefaultAzureCredential());
             log.LogInformation("kvClient = " + kvClient.ToString());
             KeyVaultSecret secret = kvClient.GetSecret(secretName);
